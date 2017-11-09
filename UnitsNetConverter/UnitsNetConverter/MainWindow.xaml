@@ -4,9 +4,46 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UnitsNetConverter"
+        xmlns:unitsNet="clr-namespace:UnitsNet;assembly=UnitsNet"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="UnitsNetConverter" MinHeight="350" MinWidth="725"
+        DataContext="{Binding Source={StaticResource MainWindowViewModel}}">
+    <Window.Resources>
+        <ObjectDataProvider ObjectInstance="{x:Type unitsNet:QuantityType}" MethodName="GetEnumValues" x:Key="Quantities"></ObjectDataProvider>
+    </Window.Resources>
+    
+    
+    
+    
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="1*" MinHeight="75" MaxHeight="85"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Header="Quantities" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+            <ListView Name="Quantities" ItemsSource="{Binding Source={StaticResource Quantities}}" SelectedItem="{Binding SelectedQuantity}"/>
+        </GroupBox>
+        <GroupBox Header="From Unit" Grid.Row="0" Grid.Column="1">
+            <ListView ItemsSource="{x:Static unitsNet:Acceleration.Units}"/> 
+
+        </GroupBox>
+        <GroupBox Header="From Value" Grid.Row="1" Grid.Column="1">
+            <TextBox Text="{Binding FromText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </GroupBox>
+        <GroupBox Header="To Unit" Grid.Row="0" Grid.Column="2">
+            <ListView ItemsSource="{x:Static unitsNet:Acceleration.Units}"/>
+        </GroupBox>
+        <GroupBox Header="To Value" Grid.Row="1" Grid.Column="2"  >
+            <TextBox Text="{Binding ToText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </GroupBox>
         
     </Grid>
 </Window>
