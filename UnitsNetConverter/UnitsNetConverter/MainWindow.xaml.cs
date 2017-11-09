@@ -22,10 +22,21 @@ namespace UnitsNetConverter
     /// </summary>
     public partial class MainWindow : Window
     {
+        // http://jsfiddle.net/du09jhpd/
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        private void FromValue_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            ToValue.Text = FromValue.
+        }
+
+        private void ToValue_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            FromValue.Text = ToValue.Text + "cnm";
+        }
     }
 }
