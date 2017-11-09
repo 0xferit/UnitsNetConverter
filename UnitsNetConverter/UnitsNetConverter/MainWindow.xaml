@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:unitsNet="clr-namespace:UnitsNet;assembly=UnitsNet"
         mc:Ignorable="d"
-        Title="UnitsNetConverter" Width="400" Height="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
-        DataContext="{Binding Source={StaticResource MainWindowViewModel}}">
+        Title="UnitsNetConverter" Width="400" Height="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ObjectDataProvider ObjectInstance="{x:Type unitsNet:QuantityType}" MethodName="GetEnumValues" x:Key="Quantities"></ObjectDataProvider>
     </Window.Resources>
@@ -26,10 +25,10 @@
         </Grid.ColumnDefinitions>
         
         <ComboBox Name="Quantities" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Source={StaticResource Quantities}}" SelectedIndex="0" HorizontalContentAlignment="Center"/>
-        <TextBox Name="FromValue" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" TextChanged="FromValue_OnTextChanged"/>
+        <TextBox Name="FromValue" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"  PreviewKeyUp="FromValue_OnPreviewKeyUp" PreviewTextInput="FromValue_OnPreviewTextInput"/>
         <ComboBox Name="FromUnit" Grid.Row="2" Grid.Column="0"  ItemsSource="{x:Static unitsNet:Acceleration.Units}" SelectedIndex="0" HorizontalContentAlignment="Center"/>
         <Label Content="=" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center"  FontSize="20" />
-        <TextBox Name="ToValue" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" TextChanged="ToValue_OnTextChanged"/>
+        <TextBox Name="ToValue" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20"  PreviewKeyUp="ToValue_OnPreviewKeyUp" PreviewTextInput="ToValue_OnPreviewTextInput"/>
         <ComboBox Name="ToUnit" Grid.Row="2" Grid.Column="2"  ItemsSource="{x:Static unitsNet:Acceleration.Units}" SelectedIndex="0" HorizontalContentAlignment="Center"/>       
         
         

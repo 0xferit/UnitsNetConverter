@@ -29,14 +29,31 @@ namespace UnitsNetConverter
             InitializeComponent();
         }
 
-        private void FromValue_OnTextChanged(object sender, TextChangedEventArgs e)
+
+        private void ToValue_OnPreviewKeyUp(object sender, KeyEventArgs e)
         {
-            ToValue.Text = FromValue.
+            FromValue.Text = (Double.Parse(ToValue.Text) + 5).ToString();
         }
 
-        private void ToValue_OnTextChanged(object sender, TextChangedEventArgs e)
+        private void FromValue_OnPreviewKeyUp(object sender, KeyEventArgs e)
         {
-            FromValue.Text = ToValue.Text + "cnm";
+            ToValue.Text = (Double.Parse(FromValue.Text) - 3).ToString();
+        }
+
+        private static bool IsTextAllowed(string text)
+        {
+            Regex regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
+            return !regex.IsMatch(text);
+        }
+
+        private void ToValue_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+
+        private void FromValue_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
         }
     }
 }
